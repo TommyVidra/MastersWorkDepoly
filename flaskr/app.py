@@ -1,5 +1,8 @@
 import os
 import json
+import sys
+script_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(script_path)
 from .xml_reader import main, return_entries
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
