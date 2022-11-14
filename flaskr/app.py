@@ -85,3 +85,6 @@ def create_app(test_config=None):
         # return json_dictionary_attributes
         return render_template('home.html')
     return app
+
+if __name__ == '__main__':
+    create_app()
