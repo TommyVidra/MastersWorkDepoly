@@ -20,23 +20,24 @@ def create_app(test_config=None):
     # Create and configure app
     script_path = os.path.dirname(os.path.abspath(__file__))
     templates_path = os.path.join(script_path, "templates")
-    app = Flask(__name__, template_folder=templates_path, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY="dev", DATABASE=os.path.join(app.instance_path, "flaskr.sqlite")
-    )
+    app = Flask(__name__)
+    # app = Flask(__name__, template_folder=templates_path, instance_relative_config=True)
+    # app.config.from_mapping(
+    #     SECRET_KEY="dev", DATABASE=os.path.join(app.instance_path, "flaskr.sqlite")
+    # )
 
-    # Load instance from config file if exists
-    if test_config is None:
-        app.config.from_pyfile("config.py", silent=True)
-    # Load test config if passed
-    else:
-        app.config.from_mapping(test_config)
+    # # Load instance from config file if exists
+    # if test_config is None:
+    #     app.config.from_pyfile("config.py", silent=True)
+    # # Load test config if passed
+    # else:
+    #     app.config.from_mapping(test_config)
 
-    # Ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    # # Ensure the instance folder exists
+    # try:
+    #     os.makedirs(app.instance_path)
+    # except OSError:
+    #     pass
 
     app.config['UPLOAD_FOLDER'] = "test_upload"
     ALLOWED_EXTENSIONS = 'xml'
@@ -80,9 +81,6 @@ def create_app(test_config=None):
     @app.route("/")
     def starting_page():
         
-        # print(dictionary_attributes)
-        # print(json_dictionary_attributes)
-        # return json_dictionary_attributes
         return render_template('home.html')
     return app
 
