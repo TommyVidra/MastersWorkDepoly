@@ -35,13 +35,20 @@ p > span{
     margin-right: 4px;
 }
 
-#advanced{
+/* #advanced{
     display: none;
-}
+} */
 
 #divider{
     display: none;
 }
 #advanced .input-group{
     width: 20% !important
+}
+
+#inv-exv{
+    display: none;
+}
+.large{
+    display: none;
 }

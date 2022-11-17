@@ -7,11 +7,6 @@ import xml_reader
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 
-# cmd
-# set FLASK_APP=flaskr
-# set FLASK_ENV=development
-# flask run
-
 class SetEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, set):
@@ -22,23 +17,6 @@ class SetEncoder(json.JSONEncoder):
 script_path = os.path.dirname(os.path.abspath(__file__))
 templates_path = os.path.join(script_path, "templates")
 app = Flask(__name__)
-# app = Flask(__name__, template_folder=templates_path, instance_relative_config=True)
-# app.config.from_mapping(
-#     SECRET_KEY="dev", DATABASE=os.path.join(app.instance_path, "flaskr.sqlite")
-# )
-
-# # Load instance from config file if exists
-# if test_config is None:
-#     app.config.from_pyfile("config.py", silent=True)
-# # Load test config if passed
-# else:
-#     app.config.from_mapping(test_config)
-
-# # Ensure the instance folder exists
-# try:
-#     os.makedirs(app.instance_path)
-# except OSError:
-#     pass
 
 app.config['UPLOAD_FOLDER'] = "test_upload"
 ALLOWED_EXTENSIONS = 'xml'
@@ -49,9 +27,6 @@ def save_file(file):
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     else:
         raise Exception("Pogrešna datoteka je prenesena, mora biti tipa xml")
-# @app.route('/upload')
-# def upload_file():
-#     return render_template('upload.html')
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
@@ -83,7 +58,3 @@ def return_dict():
 def starting_page():
     
     return render_template('home.html')
-# return app
-
-# if __name__ == '__main__':
-#     create_app().run()
